@@ -8,8 +8,20 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'places',
     pathMatch: 'full'
+  },
+  {
+    path: 'places',
+    children:[
+      {
+        path: "",
+        loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule)
+      },
+      {
+        path:":placeId"
+      }
+    ]
   },
 ];
 
